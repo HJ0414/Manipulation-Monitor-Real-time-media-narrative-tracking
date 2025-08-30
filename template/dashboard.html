@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Headline Evolution Chart</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <h2>Headline Evolution Chart</h2>
+    <button id="parseBtn">Trigger Parse</button>
+    <canvas id="evoChart" width="700" height="320"></canvas>
+    <script>
+      document.getElementById('parseBtn').addEventListener('click', async () => {
+        try {
+          const resp = await fetch('/api/parse', { method: 'POST' });
+          const j = await resp.json();
+          console.log('Parse result', j);
+        } catch (e) { console.error(e); }
+      });
+    </script>
+    <script src="{{ url_for('static', filename='js/realtime_chart.js') }}"></script>
+</body>
+</html>
